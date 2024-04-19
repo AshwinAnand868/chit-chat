@@ -4,12 +4,13 @@ import { signIn } from 'next-auth/react';
 import { FC, useState } from 'react';
 import toast from 'react-hot-toast';
 import Button from '../components/ui/Button';
+import page from '../page';
 
 interface pageProps {
   
 }
 
-const page: FC<pageProps> = ({}) => {
+const Page: FC<pageProps> = ({}) => {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
