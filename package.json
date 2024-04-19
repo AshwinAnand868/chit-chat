@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next-auth/upstash-redis-adapter": "^3.0.4",
     "@upstash/redis": "^1.29.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.368.0",
     "next": "14.2.1",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {
