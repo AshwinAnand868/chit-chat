@@ -4,7 +4,6 @@ import { signIn } from 'next-auth/react';
 import { FC, useState } from 'react';
 import toast from 'react-hot-toast';
 import Button from '../components/ui/Button';
-import page from '../page';
 
 interface pageProps {
   
@@ -74,4 +73,4 @@ const Page: FC<pageProps> = ({}) => {
   </>
 }
 
-export default page
+export default Page
