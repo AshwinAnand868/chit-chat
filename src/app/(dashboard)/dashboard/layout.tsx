@@ -50,7 +50,7 @@ const Layout = async ({ children }: LayoutProps) => {
                 <nav className="flex flex-1 flex-col">
                     <ul role="list" className="flex flex-col flex-1 gap-y-7">
                         <li>
-                            // current user's chats
+                            current user chats
                         </li>
                         <li>
                             <div className="text-xs font-semibold leading-6 text-gray-400">
