@@ -5,28 +5,16 @@ import { NextResponse } from "next/server";
 export default withAuth(
     async function middleware(req) {
         const pathname = req.nextUrl.pathname;
-        console.log(pathname);
 
-
-        console.log("Request object");
-                console.log(req);
-                
         const isAuth = await getToken({req});
-        console.log(isAuth);
 
         const isLoginPage = pathname.startsWith('/login');
-        console.log(isLoginPage);
 
         const sensitiveRoutes = ['/dashboard'];
         const isAccessingSensitiveRoute = sensitiveRoutes.some((route) => pathname.startsWith(route));
 
         if(isLoginPage) {
-            console.log("Inside if condition");
             if(isAuth) {
-                console.log("Redirecting to dashboard");
-                console.log("Request object");
-                console.log(req);
-
                 return NextResponse.redirect(new URL('/dashboard', req.url));
             }
 
@@ -41,6 +29,7 @@ export default withAuth(
         if(pathname === '/') {
             return NextResponse.redirect(new URL('/dashboard', req.url))
         }
+        
     }, {
         callbacks: {
             async authorized() {
