@@ -7,6 +7,10 @@ export default withAuth(
         const pathname = req.nextUrl.pathname;
         console.log(pathname);
 
+
+        console.log("Request object");
+                console.log(req);
+                
         const isAuth = await getToken({req});
         console.log(isAuth);
 
@@ -37,10 +41,6 @@ export default withAuth(
         if(pathname === '/') {
             return NextResponse.redirect(new URL('/dashboard', req.url))
         }
-
-        // if(isAuth) {
-        //     return NextResponse.redirect(new URL('/dashboard', req.url));
-        // }
     }, {
         callbacks: {
             async authorized() {
