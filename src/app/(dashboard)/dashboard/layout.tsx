@@ -1,6 +1,8 @@
 import FriendRequestsSidebarOption from "@/app/components/FriendRequestsSidebarOption";
 import { Icon, Icons } from "@/app/components/Icons";
+import SidebarChatList from "@/app/components/SidebarChatList";
 import SignOutButton from "@/app/components/SignOutButton";
+import { getFriendsByUserId } from "@/helpers/get-friends-by-user-id";
 import { fetchRedis } from "@/helpers/redis";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
@@ -35,7 +37,12 @@ const Layout = async ({ children }: LayoutProps) => {
 
     if (!session) notFound(); // if not session, then not found. This is the last resort, for example if we have not used the middleware correctly. 
 
-    const unseenRequestCount = ( await fetchRedis('smembers', `user:${session.user.id}:incoming_friend_requests`) as User[] ).length
+    const unseenRequestCount = (await fetchRedis('smembers', `user:${session.user.id}:incoming_friend_requests`) as User[]).length
+
+    const friends = await getFriendsByUserId(session.user.id);
+
+
+
 
     // overflow-y-auto means if the height is too large, then there's gonna be a scrollbar 
     return (
@@ -44,13 +51,14 @@ const Layout = async ({ children }: LayoutProps) => {
                 <Link href='/dashboard' className='flex h-16 shrink-0 items-center'>
                     <Icons.Logo className='h-8 w-auto text-indigo-600' />
                 </Link>
-                <div className="text-xs font-semibold leading-6 text-gray-400">
+                {friends.length > 0 ? (<div className="text-xs font-semibold leading-6 text-gray-400">
                     Your chats
-                </div>
+                </div>) : null}
+
                 <nav className="flex flex-1 flex-col">
                     <ul role="list" className="flex flex-col flex-1 gap-y-7">
                         <li>
-                            current user chats
+                            <SidebarChatList sessionId={session.user.id} friends={friends} />
                         </li>
                         <li>
                             <div className="text-xs font-semibold leading-6 text-gray-400">
@@ -78,12 +86,15 @@ const Layout = async ({ children }: LayoutProps) => {
                                         </li>
                                     )
                                 })}
+
+                                <li>
+                                    <FriendRequestsSidebarOption sessionId={session.user.id} initialUnseenRequestCount={unseenRequestCount} />
+                                </li>
+
                             </ul>
                         </li>
-                        
-                        <li>
-                            <FriendRequestsSidebarOption sessionId={session.user.id} initialUnseenRequestCount={unseenRequestCount}/>
-                        </li>
+
+
 
                         <li className='-mx-6 mt-auto flex items-center'>
                             <div className='flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900'>
