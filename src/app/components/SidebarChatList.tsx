@@ -31,14 +31,22 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ sessionId, friends }) => {
 
                 // why anchor tag below rather than link tag - because we need to get the all recent messages for this friend
                 // by doing the hard refresh
-                return <li key={friend.id}>
-
-                    <a href={`/dashboard/chat/${chatHrefConstructor(
-                        sessionId,
-                        friend.id
-                    )}`}>{friend.name}</a>
-
-                </li>
+                return (
+                    <li key={friend.id}>
+                        <a href={`/dashboard/chat/${chatHrefConstructor(
+                            sessionId,
+                            friend.id
+                        )}`}
+                        className='text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
+                            {friend.name}
+                            {unseenMessagesCount ? (
+                                <div className='rounded-full w-5 h-5 font-medium text-xs flex justify-center items-center text-white bg-indigo-600'>
+                                    {unseenMessagesCount}
+                                </div>
+                            ) : null}
+                        </a>
+                    </li>
+                )
             })}
         </ul>
     );

@@ -53,7 +53,9 @@ const Layout = async ({ children }: LayoutProps) => {
                 </Link>
                 {friends.length > 0 ? (<div className="text-xs font-semibold leading-6 text-gray-400">
                     Your chats
-                </div>) : null}
+                </div>) :  (<div className="text-xs font-semibold leading-6 text-gray-400">
+                    Your chats will display here
+                </div>)}
 
                 <nav className="flex flex-1 flex-col">
                     <ul role="list" className="flex flex-col flex-1 gap-y-7">
