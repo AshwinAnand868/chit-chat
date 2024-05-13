@@ -9,3 +9,7 @@ export function chatHrefConstructor(userId: string, friendId: string) {
     const sortedIds = [userId, friendId].sort()
     return `${sortedIds[0]}--${sortedIds[1]}`
 }
+
+export function toPusherKey(key: string) {
+    return key.replace(/:/g, "__");
+}

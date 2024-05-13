@@ -24,14 +24,14 @@ const Page: FC = async ({ }) => {
     // we can avoid the above problem, by using Promise.all which allows us to make simaltaneous calls to the db
     // await an array of promises
     const requests = await Promise.all(
-        requestsIds.map(async (requestId) => {
-            const requestDetailsJSON = await fetchRedis('get', `user:${requestId}`) as string;
+        requestsIds.map(async (senderId) => {
+            const requestDetailsJSON = await fetchRedis('get', `user:${senderId}`) as string;
 
             const requestDetails = JSON.parse(requestDetailsJSON) as User;
 
             return {
-                requestId,
-                requestEmail: requestDetails.email
+                senderId,
+                senderEmail: requestDetails.email
             }
         })
     )

@@ -1,9 +1,11 @@
 "use client";
 
+import { pusherClient } from "@/lib/pusher";
+import { toPusherKey } from "@/lib/utils";
 import axios from "axios";
 import { Check, UserPlus, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 interface FriendRequestsProps {
   incomingFriendRequests: IncomingFriendRequest[];
@@ -20,11 +22,33 @@ const FriendRequests: FC<FriendRequestsProps> = ({
     incomingFriendRequests
   );
 
+  useEffect(() => {
+    console.log("in subscribe");
+    pusherClient.subscribe(toPusherKey(`user:${sessionId}:incoming_friend_requests`)); // listening to the event
+
+    const friendRequestHandler = ({senderId, senderEmail}: IncomingFriendRequest) => {
+      console.log('new friend request!')
+      setFriendRequests((prev) => [...prev, {
+        senderId,
+        senderEmail
+      }])
+    }
+
+    pusherClient.bind('incoming_friend_requests', friendRequestHandler); // execute a function when the event occurs
+
+    // clean up
+    return () => {
+      pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:incoming_friend_requests`))
+      pusherClient.unbind('incoming_friend_requests', friendRequestHandler);
+    }
+
+  }, []);
+
   const acceptFriend = async (requestId: string) => {
     await axios.post("/api/friends/accept", { id: requestId });
 
     setFriendRequests((prev) =>
-      prev.filter((request) => request.requestId !== requestId)
+      prev.filter((request) => request.senderId !== requestId)
     );
 
     router.refresh();
@@ -34,7 +58,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
     await axios.post("/api/friends/deny", { id: requestId });
 
     setFriendRequests((prev) =>
-      prev.filter((request) => request.requestId !== requestId)
+      prev.filter((request) => request.senderId !== requestId)
     );
 
     router.refresh();
@@ -48,20 +72,20 @@ const FriendRequests: FC<FriendRequestsProps> = ({
         </div>
       ) : (
         friendRequests.map((request) => (
-          <div key={request.requestId} className="flex gap-4 items-center">
+          <div key={request.senderId} className="flex gap-4 items-center">
             <UserPlus className="text-black" />
-            <p className="font-medium text-lg">{request.requestEmail}</p>
+            <p className="font-medium text-lg">{request.senderEmail}</p>
             <button
               aria-label="accept friend"
               className="w-8 h-8 bg-indigo-600 hover:bg-indigo-700 grid place-items-center rounded-full transition hover:shadow-md"
-              onClick={() => acceptFriend(request.requestId)}
+              onClick={() => acceptFriend(request.senderId)}
             >
               <Check className="font-semibold text-white w-3/4 h-3/4" />
             </button>
             <button
               aria-label="deny friend"
               className="w-8 h-8 bg-red-600 hover:bg-red-700 grid place-items-center rounded-full transition hover:shadow-md"
-              onClick={() => denyFriend(request.requestId)}
+              onClick={() => denyFriend(request.senderId)}
             >
               <X className="font-semibold text-white w-3/4 h-3/4" />
             </button>
