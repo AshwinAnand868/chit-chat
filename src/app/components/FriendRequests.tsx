@@ -23,11 +23,9 @@ const FriendRequests: FC<FriendRequestsProps> = ({
   );
 
   useEffect(() => {
-    console.log("in subscribe");
     pusherClient.subscribe(toPusherKey(`user:${sessionId}:incoming_friend_requests`)); // listening to the event
 
     const friendRequestHandler = ({senderId, senderEmail}: IncomingFriendRequest) => {
-      console.log('new friend request!')
       setFriendRequests((prev) => [...prev, {
         senderId,
         senderEmail

@@ -69,10 +69,6 @@ export async function POST(req: Request) {
           return new Response('You both are already friends!', {status: 400});
       }
 
-      
-      
-      console.log("Server side pusher")
-
       // notify the user to whom the friend request will be sent
       await pusherServer.trigger(
         toPusherKey(`user:${idToAdd}:incoming_friend_requests`), // the channel we are triggering to

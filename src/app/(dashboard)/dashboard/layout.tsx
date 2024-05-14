@@ -41,13 +41,10 @@ const Layout = async ({ children }: LayoutProps) => {
 
     const friends = await getFriendsByUserId(session.user.id);
 
-
-
-
     // overflow-y-auto means if the height is too large, then there's gonna be a scrollbar 
     return (
         <div className="w-full h-screen flex">
-            <div className='hidden md:flex h-full w-full max-w-[20.9rem] grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6'>
+            <div className='hidden md:flex h-full w-full max-w-[20.9rem] grow flex-col gap-y-5 overflow-y-auto overflow-x-hidden border-r border-gray-200 bg-white px-6'>
                 <Link href='/dashboard' className='flex h-16 shrink-0 items-center'>
                     <Icons.Logo className='h-8 w-auto text-indigo-600' />
                 </Link>
@@ -124,7 +121,13 @@ const Layout = async ({ children }: LayoutProps) => {
                     </ul>
                 </nav>
             </div>
-            {children}
+
+            {/* {children} */}
+
+
+            <aside className="max-h-screen container py-16 md:py-12 w-full">
+                {children}
+            </aside>
         </div>
     );
 }
