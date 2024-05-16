@@ -44,6 +44,9 @@ async function getChatMessages(chatId: string) {
 
 const page: FC<PageProps> = async ({ params }: PageProps) => {
 
+  
+  // await new Promise((resolve) => setTimeout(resolve, 500000)); //loading state test
+
   const {chatId} = params;
   const session = await getServerSession(authOptions);
 
