@@ -19,17 +19,25 @@ const FriendRequestsSidebarOption: FC<FriendRequestsSidebarOptionProps> = ({ ini
 
   useEffect(() => {
     pusherClient.subscribe(toPusherKey(`user:${sessionId}:incoming_friend_requests`)); // listening to the event
+    pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`));
 
     const friendRequestHandler = () => {
       setUnseenRequestCount((prev) => prev + 1);
     }
 
+    const newFriendHandler = () => {
+      setUnseenRequestCount((prev) => prev - 1);
+    }
+
     pusherClient.bind('incoming_friend_requests', friendRequestHandler); // execute a function when the event occurs
+    pusherClient.bind('new_friend', newFriendHandler);
 
     // clean up
     return () => {
       pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:incoming_friend_requests`))
       pusherClient.unbind('incoming_friend_requests', friendRequestHandler);
+      pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:friends`));
+      pusherClient.unbind('new_friend', newFriendHandler);
     }
 
   }, [sessionId])

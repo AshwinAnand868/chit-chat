@@ -1,10 +1,12 @@
 import FriendRequestsSidebarOption from "@/app/components/FriendRequestsSidebarOption";
-import { Icon, Icons } from "@/app/components/Icons";
+import { Icons } from "@/app/components/Icons";
+import MobileChatLayout from "@/app/components/MobileChatLayout";
 import SidebarChatList from "@/app/components/SidebarChatList";
 import SignOutButton from "@/app/components/SignOutButton";
 import { getFriendsByUserId } from "@/helpers/get-friends-by-user-id";
 import { fetchRedis } from "@/helpers/redis";
 import { authOptions } from "@/lib/auth";
+import { SidebarOption } from "@/types/typing";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,13 +15,6 @@ import { ReactNode } from "react";
 
 interface LayoutProps {
     children: ReactNode
-}
-
-interface SidebarOption {
-    id: number,
-    name: string,
-    href: string,
-    Icon: Icon,
 }
 
 const sidebarOptions: SidebarOption[] = [
@@ -44,6 +39,9 @@ const Layout = async ({ children }: LayoutProps) => {
     // overflow-y-auto means if the height is too large, then there's gonna be a scrollbar 
     return (
         <div className="w-full h-screen flex">
+            <div className="md:hidden">
+                <MobileChatLayout friends={friends} session={session} sidebarOptions={sidebarOptions} unseenRequestCount={unseenRequestCount} />
+            </div>
             <div className='hidden md:flex h-full w-full max-w-[20.9rem] grow flex-col gap-y-5 overflow-y-auto overflow-x-hidden border-r border-gray-200 bg-white px-6'>
                 <Link href='/dashboard' className='flex h-16 shrink-0 items-center'>
                     <Icons.Logo className='h-8 w-auto text-indigo-600' />
