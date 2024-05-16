@@ -44,8 +44,8 @@ export async function POST(req: Request) {
       fetchRedis('get', `user:${idToAdd}`),
     ])) as [string, string]
 
-    const user = JSON.parse(userRaw) as User
-    const friend = JSON.parse(friendRaw) as User
+    const user = JSON.parse(userRaw) as User;
+    const friend = JSON.parse(friendRaw) as User;
 
     // notify added user
 
