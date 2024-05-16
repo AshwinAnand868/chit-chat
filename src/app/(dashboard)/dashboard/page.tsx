@@ -2,6 +2,7 @@ import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id';
 import { fetchRedis } from '@/helpers/redis';
 import { authOptions } from '@/lib/auth';
 import { chatHrefConstructor } from '@/lib/utils';
+import { Message } from '@/lib/validators/message';
 import { ChevronRight } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 import Image from 'next/image';
@@ -27,6 +28,15 @@ const page = async ({}) => {
         `chat:${chatHrefConstructor(session.user.id, friend.id)}:messages`,
         -1,
         -1)) as string[];
+
+      // if there is no previous chat for that friend, then return a mock object
+      if(!rawLastMessage) return {
+        ...friend,
+        lastMessage: {
+          senderId: '',
+          text: ''
+        }
+      }
 
       const lastMessage = JSON.parse(rawLastMessage) as Message;
 
@@ -75,6 +85,7 @@ const page = async ({}) => {
             </p>
           </div>
         </Link>
+        {/* <div className='bg-white w-full h-3'></div> */}
       </div>
     ))}
   </div>
