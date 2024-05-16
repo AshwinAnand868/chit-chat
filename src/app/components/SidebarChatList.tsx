@@ -67,7 +67,10 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ sessionId, friends }) => {
 
         return () => {
             pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:chats`)); // for any chats this user have, we will listen to the message from all chats of this user
-            pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`));
+            pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:friends`));
+
+            pusherClient.unbind('new_message', newMessageHandler);
+            pusherClient.unbind('new_friend', newFriendHandler);
         }
 
     }, [pathname, sessionId, router]); // add the variables as dependencies because we are getting their values out of useEffect hook
