@@ -31,7 +31,7 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
   }, [pathname])
 
   return (
-    <div className='fixed bg-zinc-50 border-b border-zinc-200 top-0 inset-x-0 py-2 px-4'>
+    <div className='fixed bg-zinc-50 border-b border-zinc-200 top-0 inset-x-0 py-2 px-4 z-10'>
       <div className='w-full flex justify-between items-center'>
         <Link
           href='/dashboard'

@@ -26,7 +26,11 @@ const FriendRequestsSidebarOption: FC<FriendRequestsSidebarOptionProps> = ({ ini
     }
 
     const newFriendHandler = () => {
-      setUnseenRequestCount((prev) => prev - 1);
+      setUnseenRequestCount((prev) => {
+        if(prev > 0)
+          return prev - 1 
+        return prev;
+      });
     }
 
     pusherClient.bind('incoming_friend_requests', friendRequestHandler); // execute a function when the event occurs
