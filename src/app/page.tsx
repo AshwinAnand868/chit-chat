@@ -1,7 +1,8 @@
-import Button from "./components/ui/Button";
+import Hero from "./components/Hero";
 
 export default async function Home() {
   return (
-    <Button variant='ghost'>Hello</Button>
+    // <Button variant='ghost'></Button>
+    <Hero />
   );
 }

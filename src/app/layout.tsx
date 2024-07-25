@@ -1,4 +1,6 @@
+import { authOptions } from "@/lib/auth";
 import type { Metadata } from "next";
+import { getServerSession } from "next-auth";
 import { Inter } from "next/font/google";
 import Providers from "./Providers";
 import Navbar from "./components/navbar/Navbar";
@@ -11,19 +13,23 @@ export const metadata: Metadata = {
   description: "Stay connected with your friends through this app",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const session = await getServerSession(authOptions);
+  // if (!session) notFound();
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
-          <Navbar />
-          {children}
-        </Providers>
-        </body>
+          <Providers>
+            <Navbar session={session} />
+            {children}
+          </Providers>
+      </body>
     </html>
   );
 }

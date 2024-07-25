@@ -9,12 +9,14 @@ export const buttonVariants = cva(
         variants: {
             variant: {
                 default: 'bg-slate-900 text-white hover:bg-slate-800',
-                ghost: 'bg-transparent hover:text-slate-900 hover:bg-slate-200'
+                ghost: 'bg-transparent hover:text-slate-900 hover:bg-slate-200',
+                loginbtn: 'bg-gradient-to-br from-red-600 via-orange-400 to-yellow-300 text-white hover:bg-gradient-to-r transition-all py-[20px]'
             },
             size: {
                 default: 'h-10 py-2 px-4',
                 sm: 'h-9 px-2',
-                lg: 'h-11 px-8'
+                lg: 'h-11 px-8',
+                xl: 'h-[3rem] px-8'
             }
         },
         defaultVariants: {

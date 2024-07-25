@@ -7,7 +7,7 @@ import { ChevronRight } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
 interface pageProps {
   
@@ -17,7 +17,7 @@ const page = async ({}) => {
   const session = await getServerSession(authOptions);
 
   if(!session)
-    return notFound();
+    return NextResponse.redirect(new URL('/'));
 
   const friends = await getFriendsByUserId(session.user.id);
 
@@ -47,22 +47,22 @@ const page = async ({}) => {
     })
   )
 
-  return <div className='py-12 container'>
-    <h1 className='font-bold text-5xl mb-8'>Recent chats</h1>
+  return <div className='py-12 container px-[10px]'>
+    <h1 className='font-bold text-xl sm:text-3xl mb-8'>Recent chats</h1>
     {friendsWithLastMessage.length === 0 ? (
       <p className='text-sm text-zinc-500'>You don&apos;t have any chats yet</p>
     ) : 
     friendsWithLastMessage.map((friend) => (
       <div key={friend.id} className='relative bg-zinc-50 border-zinc-200 p-3 rounded-md'>
-        <div className='absolute right-4 inset-y-0 flex items-center'>
+        <div className='absolute right-1 sm:right-4 inset-y-0 flex items-center'>
           <ChevronRight className='h-7 w-7 text-zinc-400' />
         </div>
 
         <Link href={`/dashboard/chat/${chatHrefConstructor(
           session.user.id,
           friend.id
-        )}`} className='relative sm:flex'>
-          <div className='mb-4 flex-shrink-0 sm:mb-0 sm:mr-4 flex items-center justify-center'>
+        )}`} className='relative flex'>
+          <div className='mb-4 flex-shrink-0 mr-3 sm:mr-4 flex items-center justify-center'>
             <div className='relative h-10 w-10'>
               <Image 
                 referrerPolicy='no-referrer'

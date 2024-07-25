@@ -26,9 +26,9 @@ export default withAuth(
             return NextResponse.redirect(new URL('/login', req.url))
         }
         
-        if(pathname === '/') {
-            return NextResponse.redirect(new URL('/dashboard', req.url))
-        }
+        // if(pathname === '/') {
+        //     return NextResponse.redirect(new URL('/dashboard', req.url))
+        // }
         
     }, {
         callbacks: {
@@ -40,5 +40,5 @@ export default withAuth(
 )
 
 export const config = {
-    matcher: ['/', '/login', '/dashboard/:path*'], // /dashboard/:path* means any /dashboard/anyword
+    matcher: ['/login', '/dashboard/:path*'], // /dashboard/:path* means any /dashboard/anyword '/',
 }

@@ -38,17 +38,17 @@ const Layout = async ({ children }: LayoutProps) => {
 
     // overflow-y-auto means if the height is too large, then there's gonna be a scrollbar 
     return (
-        <div className="w-full h-screen flex">
+        <div className="w-full h-[89vh] flex">
             <div className="md:hidden">
                 <MobileChatLayout friends={friends} session={session} sidebarOptions={sidebarOptions} unseenRequestCount={unseenRequestCount} />
             </div>
             <div className='hidden md:flex h-full w-full max-w-[20.9rem] grow flex-col gap-y-5 overflow-y-auto overflow-x-hidden border-r border-gray-200 bg-white px-6'>
-                <Link href='/dashboard' className='flex h-16 shrink-0 items-center'>
+                {/* <Link href='/dashboard' className='flex h-16 shrink-0 items-center'>
                     <Icons.Logo className='h-8 w-auto text-indigo-600' />
-                </Link>
-                {friends.length > 0 ? (<div className="text-xs font-semibold leading-6 text-gray-400">
+                </Link> */}
+                {friends.length > 0 ? (<div className="text-lg mt-4 font-semibold leading-6 text-gray-400">
                     Your chats
-                </div>) :  (<div className="text-xs font-semibold leading-6 text-gray-400">
+                </div>) :  (<div className="text-lg mt-4 font-semibold leading-6 text-gray-400">
                     Your chats will display here
                 </div>)}
 

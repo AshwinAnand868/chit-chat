@@ -2,17 +2,19 @@
 
 import { SidebarOption } from '@/types/typing'
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react'
-import { Menu, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import { Session } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FC, Fragment, useEffect, useState } from 'react'
+import { AiOutlineMenu } from 'react-icons/ai'
+import { IoHomeOutline } from "react-icons/io5"
 import FriendRequestsSidebarOption from './FriendRequestsSidebarOption'
 import { Icons } from './Icons'
 import SidebarChatList from './SidebarChatList'
 import SignOutButton from './SignOutButton'
-import Button, { buttonVariants } from './ui/Button'
+import { buttonVariants } from './ui/Button'
 
 interface MobileChatLayoutProps {
   friends: User[]
@@ -32,15 +34,23 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
 
   return (
     <div className='fixed bg-zinc-50 border-b border-zinc-200 top-0 inset-x-0 py-2 px-4 z-10'>
-      <div className='w-full flex justify-between items-center'>
-        <Link
-          href='/dashboard'
-          className={buttonVariants({ variant: 'ghost' })}>
-          <Icons.Logo className='h-6 w-auto text-indigo-600' />
-        </Link>
-        <Button onClick={() => setOpen(true)} className='gap-4'>
-          Menu <Menu className='h-6 w-6' />
-        </Button>
+      <div className='w-full flex justify-between items-center h-[70px]'>
+        <div>
+          <Link
+            href='/'
+            className={buttonVariants({ variant: 'ghost' })}
+          >
+            <IoHomeOutline className='h-6 w-auto text-indigo-600' />
+          </Link>
+          <Link
+            href='/dashboard'
+            className={buttonVariants({ variant: 'ghost' })}>
+            <Icons.Logo className='h-6 w-auto text-indigo-600' />
+          </Link>
+        </div>
+        <div className='' onClick={() => setOpen(true)}>
+          <AiOutlineMenu size={25} className='text-indigo-600' />
+        </div>
       </div>
       <Transition show={open} as={Fragment}>
         <Dialog as='div' className='relative z-10' onClose={setOpen}>
