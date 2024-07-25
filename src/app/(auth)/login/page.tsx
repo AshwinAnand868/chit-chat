@@ -5,18 +5,32 @@ import { signIn } from "next-auth/react";
 import { FC, useState } from "react";
 import toast from "react-hot-toast";
 import { FaFacebookF } from "react-icons/fa";
+import 'semantic-ui-css/components/popup.min.css';
+import { Popup } from "semantic-ui-react";
 
 interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
   const [isLoadingG, setIsLoadingG] = useState<boolean>(false);
   const [isLoadingF, setIsLoadingF] = useState<boolean>(false);
-  
+
   async function loginWithGoogle() {
     setIsLoadingG(true);
 
     try {
       await signIn("google");
+    } catch (error) {
+      toast.error("Something went wrong while logging");
+    } finally {
+      setIsLoadingG(false);
+    }
+  }
+
+  async function loginWithFacebook() {
+    setIsLoadingF(true);
+
+    try {
+      await signIn("facebook");
     } catch (error) {
       toast.error("Something went wrong while logging");
     } finally {
@@ -45,8 +59,8 @@ const Page: FC<pageProps> = ({}) => {
                   type="button"
                   className="max-w-sm mx-auto w-[70%]"
                   onClick={loginWithGoogle}
-                  variant={'loginbtn'}
-                  size={'xl'}
+                  variant={"loginbtn"}
+                  size={"xl"}
                 >
                   {isLoadingG ? null : (
                     <svg
@@ -80,19 +94,29 @@ const Page: FC<pageProps> = ({}) => {
                   )}
                   Google
                 </Button>
-                <Button
-                  isLoading={isLoadingF}
-                  type="button"
-                  className="max-w-sm mx-auto w-[70%]"
-                  onClick={loginWithGoogle}
-                  variant={'loginbtn'}
-                  size={'xl'}
-                >
-                  {isLoadingF ? null : (
-                    <span className="rounded-full h-7 w-8 bg-white mr-2 p-1"><FaFacebookF className="text-blue-600 h-5 w-6"/></span>
-                  )}
-                  Facebook
-                </Button>
+
+                <Popup
+                  trigger={
+                    <Button
+                      isLoading={isLoadingF}
+                      type="button"
+                      className="max-w-sm mx-auto w-[70%] bg-red-300"
+                      onClick={() => {}}
+                      variant={"loginbtn"}
+                      size={"xl"}
+                    >
+                      {isLoadingF ? null : (
+                        <span className="rounded-full h-7 w-8 bg-white mr-2 p-1">
+                          <FaFacebookF className="text-blue-600 h-5 w-6" />
+                        </span>
+                      )}
+                      Facebook
+                    </Button>
+                  }
+                  content="Feature not available yet"
+                  position="bottom center"
+                />
+
                 {/* <Button
                   isLoading={isLoading}
                   type="button"
