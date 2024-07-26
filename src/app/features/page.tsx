@@ -56,19 +56,21 @@ const Page = () => {
   return (
     <section id="features" className="py-10">
       <div className="container mx-auto px-6">
-        <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10 sm:mb-16 text-red-400">
-          Everything you need for effortless conversations
-        </h2>
+        <div className="text-center">
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10 sm:mb-16 text-white border-b-4 inline-block py-2">
+            Everything you need for effortless conversations
+          </h2>
+        </div>
 
         <div className="mt-5 sm:mt-10">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-5 text-blue-500">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-5 text-indigo-600">
             Current Features
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
               <div className="opactiy-100 translate-y-0">
                 <div className="flex gap-4 p-6 bg-white shadow-md rounded-lg hover:shadow-xl transition-shadow duration-300 glow-effect">
-                  <FaComments className="h-24 w-24 text-blue-500 mr-4" />
+                  <FaComments className="h-24 w-24 text-indigo-600 mr-4" />
                   <div>
                     <h3 className="text-xl font-semibold mb-2">
                       Text Messaging
@@ -89,7 +91,7 @@ const Page = () => {
             Features that may come
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 sm:gap-12">
             {features.map((feature, index) => (
               <InView
                 key={index}
@@ -113,7 +115,7 @@ const Page = () => {
                         enterTo="opacity-100 translate-y-0"
                         // className="w-full "
                       >
-                        <div className="flex gap-4 p-6 bg-white shadow-md rounded-lg hover:shadow-xl transition-shadow duration-300 glow-effect">
+                        <div className="flex items-center justify-center gap-4 p-6 bg-white shadow-md rounded-lg hover:shadow-xl transition-shadow duration-300 glow-effect">
                           <feature.icon className="h-24 w-24 text-gray-500 mr-4" />
                           <div>
                             <h3 className="text-xl font-semibold mb-2">
@@ -129,16 +131,9 @@ const Page = () => {
                   </div>
                 )}
               </InView>
-
-              // <Transition>
-              //     <TransitionChild>
-
-              //     </TransitionChild>
-
-              // </Transition>
             ))}
           </div>
-          <div className="mt-20 text-center text-gray-500 text-sm">
+          <div className="mt-20 text-center text-white text-sm">
             <p>
               Some features listed are for design purposes and may not be
               available at launch. Stay tuned for updates!

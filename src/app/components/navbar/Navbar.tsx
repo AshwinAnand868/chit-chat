@@ -69,7 +69,7 @@ const Navbar = ({ session }: NavbarProps) => {
   };
 
   return (
-    <div className="z-50 w-full bg-red-400 sticky top-0 h-[86px]">
+    <div className="z-50 w-full bg-red-400 sticky top-0 h-[86px] shadow-2xl">
       <div className="flex justify-between items-center h-[86px] w-full px-4 2xl:px-16">
         <Link href="/dashboard">
           <Icons.Logo className="h-8 w-auto text-indigo-600" />

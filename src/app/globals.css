@@ -37,18 +37,58 @@
 .glow-effect::before {
   content: "";
   position: absolute;
-  inset: -2px;
+  inset: -5px;
   background: linear-gradient(
     45deg,
-    rgb(255, 68, 0),
-    rgba(255, 140, 0, 0.647)
+    rgb(0, 0, 0),
+    rgb(0, 0, 0, 0.5)
   );
   z-index: -1;
   filter: blur(15px);
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+  animation: glow 1.5s infinite alternate;
 }
 
-.glow-effect:hover::before {
-  opacity: 1;
+@keyframes glow {
+  0% {
+    opacity: 0.5;
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(20px);
+  }
 }
+
+.arrow-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* .arrow-button::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+} */
+
+/* .arrow-button--left::after {
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #ccc transparent transparent;
+  left: -10px;
+}
+
+.arrow-button--right::after {
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #ccc;
+  right: -10px;
+} */
