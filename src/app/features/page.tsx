@@ -2,17 +2,18 @@
 
 import { Transition, TransitionChild } from "@headlessui/react";
 import {
-    FaComments,
-    FaLock,
-    FaMoon,
-    FaPhotoVideo,
-    FaSmile,
-    FaVideo,
+  FaComments,
+  FaLock,
+  FaMoon,
+  FaPhotoVideo,
+  FaSmile,
+  FaVideo,
 } from "react-icons/fa";
 
 import { useState } from "react";
 import { IconType } from "react-icons/lib";
 import { InView } from "react-intersection-observer";
+import page from "../page";
 
 type Feature = {
   icon: IconType;
@@ -50,7 +51,7 @@ const features: Feature[] = [
   },
 ];
 
-const page = () => {
+const Page = () => {
   const [lastCardInView, setLastCardInView] = useState<boolean>(false);
 
   return (
