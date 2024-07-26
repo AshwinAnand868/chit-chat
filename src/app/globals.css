@@ -3,28 +3,52 @@
 @tailwind utilities;
 
 @layer base {
-    .container {
-        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
-    }
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
 }
 
 .scrollbar-w-2::-webkit-scrollbar {
-    width: 0.25rem;
-    height: 0.25rem;
+  width: 0.25rem;
+  height: 0.25rem;
 }
 
 .scrollbar-track-blue-lighter::-webkit-scrollbar-track {
-    --bg-capacity: 1;
-    background-color: #f7fafc;
-    background-color: rgba(247, 250, 252, var(--bg-capacity));
+  --bg-capacity: 1;
+  background-color: #f7fafc;
+  background-color: rgba(247, 250, 252, var(--bg-capacity));
 }
 
 .scrollbar-thumb-blue::-webkit-scrollbar-thumb {
-    --bg-capacity: 1;
-    background-color: #edf2f7;
-    background-color: rgba(237, 242, 247, var(--bg-capacity));
+  --bg-capacity: 1;
+  background-color: #edf2f7;
+  background-color: rgba(237, 242, 247, var(--bg-capacity));
 }
 
 .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
-    border-radius: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.glow-effect {
+  position: relative;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-effect::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    45deg,
+    rgb(255, 68, 0),
+    rgba(255, 140, 0, 0.647)
+  );
+  z-index: -1;
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.glow-effect:hover::before {
+  opacity: 1;
 }

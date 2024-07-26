@@ -80,7 +80,7 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ sessionId, friends }) => {
     }, [pathname, sessionId, router]); // add the variables as dependencies because we are getting their values out of useEffect hook
 
     return (
-        <ul role='list' className='max-h-[25rem] overflow-y-auto -mx-2 space-y-1'>
+        <ul role='list' className='max-h-[25rem] overflow-y-auto -mx-2 space-y-1 text-white'>
             {activeChats.sort().map((friend) => {
                 const unseenMessagesCount = unseenMessages.filter((unseenMessage) => {
                     return unseenMessage.senderId === friend.id
@@ -94,7 +94,7 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ sessionId, friends }) => {
                             sessionId,
                             friend.id
                         )}`}
-                        className='text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex items-center gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
+                        className='text-white hover:text-indigo-600 hover:bg-gray-50 group flex items-center gap-x-3 rounded-md p-2 text-sm tracking-wider leading-6 font-semibold'>
                             {friend.name}
                             {unseenMessagesCount ? (
                                 <div className='rounded-full w-5 h-5 font-medium text-xs flex justify-center items-center text-white bg-indigo-600'>

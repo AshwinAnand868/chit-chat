@@ -35,16 +35,16 @@ const navbarLinks: NavbarLink[] = [
     name: "How it works?",
     href: "/howitworks",
   },
-  {
-    id: 3,
-    name: "Why us?",
-    href: "/whyus",
-  },
-  {
-    id: 4,
-    name: "Testimonials",
-    href: "/testimonials",
-  },
+  // {
+  //   id: 3,
+  //   name: "Why us?",
+  //   href: "/whyus",
+  // },
+  // {
+  //   id: 4,
+  //   name: "Testimonials",
+  //   href: "/testimonials",
+  // },
   {
     id: 5,
     name: "Privacy Policy",
@@ -69,13 +69,13 @@ const Navbar = ({ session }: NavbarProps) => {
   };
 
   return (
-    <div className="w-full bg-red-500 h-[4.5rem] shadow-xl sticky top-0">
-      <div className="flex justify-between items-center h-[70px] w-full px-4 2xl:px-16">
+    <div className="z-50 w-full bg-red-400 sticky top-0 h-[86px]">
+      <div className="flex justify-between items-center h-[86px] w-full px-4 2xl:px-16">
         <Link href="/dashboard">
           <Icons.Logo className="h-8 w-auto text-indigo-600" />
         </Link>
 
-        <div className="hidden sm:flex">
+        <div className="hidden md:flex">
           <ul className="flex">
             {navbarLinks.map((option) => {
               return option.id < 6 ? (
@@ -100,9 +100,9 @@ const Navbar = ({ session }: NavbarProps) => {
 
         <div
           onClick={handleNav}
-          className="flex sm:hidden cursor-pointer pl-24"
+          className="flex md:hidden cursor-pointer pl-24"
         >
-          <AiOutlineMenu size={25} />
+          <AiOutlineMenu size={25} className="text-indigo-600"/>
           {/* {
             <p className="text-[16px] px-3">
               {session?.user.name?.split(" ")[0]}
@@ -114,7 +114,7 @@ const Navbar = ({ session }: NavbarProps) => {
       <div
         className={
           menuOpen
-            ? "fixed left-0 top-0 w-[65%] h-screen sm:hidden bg-red-500 p-10 ease-in duration-500"
+            ? "fixed left-0 top-0 w-[65%] h-screen md:hidden bg-red-400 p-10 ease-in duration-500 text-white"
             : "fixed left-[-100%] top-0 p-10 ease-in duration-500 h-screen w-[65%]"
         }
       >

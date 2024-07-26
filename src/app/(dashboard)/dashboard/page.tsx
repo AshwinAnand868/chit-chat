@@ -47,15 +47,15 @@ const page = async ({}) => {
     })
   )
 
-  return <div className='py-12 container px-[10px]'>
-    <h1 className='font-bold text-xl sm:text-3xl mb-8'>Recent chats</h1>
+  return <div className='py-6 container px-[10px]'>
+    <h1 className='font-bold text-xl sm:text-3xl lg:text-4xl mb-10 text-indigo-600 text-center'>Recent chats</h1>
     {friendsWithLastMessage.length === 0 ? (
-      <p className='text-sm text-zinc-500'>You don&apos;t have any chats yet</p>
+      <p className='font-bold text-xl sm:text-3xl text-indigo-600 text-center'>You don&apos;t have any chats yet</p>
     ) : 
     friendsWithLastMessage.map((friend) => (
-      <div key={friend.id} className='relative bg-zinc-50 border-zinc-200 p-3 rounded-md'>
+      <div key={friend.id} className='relative bg-red-400 text-white border-zinc-200 p-3 rounded-md mb-4'>
         <div className='absolute right-1 sm:right-4 inset-y-0 flex items-center'>
-          <ChevronRight className='h-7 w-7 text-zinc-400' />
+          <ChevronRight className='h-7 w-7 text-white' />
         </div>
 
         <Link href={`/dashboard/chat/${chatHrefConstructor(

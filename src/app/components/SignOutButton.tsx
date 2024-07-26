@@ -14,7 +14,7 @@ const SignOutButton: FC<SignOutButtonProps> = ({ ...props }: SignOutButtonProps)
     const [isSigningOut, setisSigningOut] = useState<boolean>(false);
 
     return (
-        <Button {...props} variant='ghost' disabled={isSigningOut} onClick={async () => {
+        <Button {...props} variant='no' disabled={isSigningOut} onClick={async () => {
             setisSigningOut(true);
 
             try {
