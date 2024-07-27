@@ -114,8 +114,8 @@ const Navbar = ({ session }: NavbarProps) => {
       <div
         className={
           menuOpen
-            ? "fixed left-0 top-0 w-[65%] h-screen md:hidden bg-red-400 p-10 ease-in duration-500 text-white"
-            : "fixed left-[-100%] top-0 p-10 ease-in duration-500 h-screen w-[65%]"
+            ? "fixed left-0 top-0 w-[65%] h-screen md:hidden bg-red-400 p-10 ease-in duration-500 text-white z-[999]"
+            : "fixed left-[-100%] top-0 p-10 ease-in duration-500 h-screen w-[65%] z-[999]"
         }
       >
         <div className="flex items-center justify-end">

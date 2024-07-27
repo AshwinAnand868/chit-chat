@@ -104,6 +104,7 @@ const Page = () => {
                     }
                   }
                 }}
+                className="z-[1]"
               >
                 {({ inView, ref }) => (
                   <div ref={ref}>

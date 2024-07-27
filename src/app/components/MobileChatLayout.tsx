@@ -33,7 +33,7 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
   }, [pathname])
 
   return (
-    <div className='fixed bg-zinc-50 border-b border-zinc-200 top-0 inset-x-0 py-2 px-4 z-10'>
+    <div className='fixed bg-red-400 border-b border-zinc-200 top-0 inset-x-0 py-2 px-4 z-[60]'>
       <div className='w-full flex justify-between items-center h-[70px]'>
         <div>
           <Link
@@ -53,10 +53,10 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
         </div>
       </div>
       <Transition show={open} as={Fragment}>
-        <Dialog as='div' className='relative z-10' onClose={setOpen}>
+        <Dialog as='div' className='relative z-[80]' onClose={setOpen}>
           <div className='fixed inset-0' />
 
-          <div className='fixed inset-0 overflow-hidden'>
+          <div className='fixed inset-0 overflow-hidden mt-20'>
             <div className='absolute inset-0 overflow-hidden'>
               <div className='pointer-events-none fixed inset-y-0 left-0 flex max-w-full pr-10'>
                 <TransitionChild
@@ -68,16 +68,16 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
                   leaveFrom='translate-x-0'
                   leaveTo='-translate-x-full'>
                   <DialogPanel className='pointer-events-auto w-screen max-w-md'>
-                    <div className='flex h-full flex-col overflow-hidden bg-white py-6 shadow-xl'>
+                    <div className='flex h-full flex-col overflow-hidden bg-red-400 py-6 shadow-xl'>
                       <div className='px-4 sm:px-6'>
                         <div className='flex items-start justify-between'>
-                          <DialogTitle className='text-base font-semibold leading-6 text-gray-900'>
+                          <DialogTitle className='text-base font-semibold leading-6 text-white'>
                             Dashboard
                           </DialogTitle>
                           <div className='ml-3 flex h-7 items-center'>
                             <button
                               type='button'
-                              className='rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                              className='rounded-md text-white hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                               onClick={() => setOpen(false)}>
                               <span className='sr-only'>Close panel</span>
                               <X className='h-6 w-6' aria-hidden='true' />
@@ -89,7 +89,7 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
                         {/* Content */}
 
                         {friends.length > 0 ? (
-                          <div className='text-xs font-semibold leading-6 text-gray-400'>
+                          <div className='text-lg mb-3 font-semibold leading-6 text-white'>
                             Your chats
                           </div>
                         ) : null}
@@ -106,7 +106,7 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
                             </li>
 
                             <li>
-                              <div className='text-xs font-semibold leading-6 text-gray-400'>
+                              <div className='text-lg font-semibold leading-6 text-white'>
                                 Overview
                               </div>
                               <ul role='list' className='-mx-2 mt-2 space-y-1'>
@@ -116,7 +116,7 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
                                     <li key={option.name}>
                                       <Link
                                         href={option.href}
-                                        className='text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
+                                        className='text-white hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
                                         <span className='text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'>
                                           <Icon className='h-4 w-4' />
                                         </span>
@@ -140,8 +140,8 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
                             </li>
 
                             <li className='-ml-6 mt-auto flex items-center'>
-                              <div className='flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900'>
-                                <div className='relative h-8 w-8 bg-gray-50'>
+                              <div className='flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white'>
+                                <div className='relative h-8 w-8'>
                                   <Image
                                     fill
                                     referrerPolicy='no-referrer'
@@ -157,7 +157,7 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({ friends, session, sidebar
                                     {session.user.name}
                                   </span>
                                   <span
-                                    className='text-xs text-zinc-400'
+                                    className='text-xs text-white'
                                     aria-hidden='true'>
                                     {session.user.email}
                                   </span>
