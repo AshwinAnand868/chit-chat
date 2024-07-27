@@ -53,9 +53,9 @@ const page = async ({}) => {
       <p className='font-bold text-xl sm:text-3xl text-indigo-600 text-center'>You don&apos;t have any chats yet</p>
     ) : 
     friendsWithLastMessage.map((friend) => (
-      <div key={friend.id} className='relative bg-white text-red-400 border-zinc-200 p-3 rounded-md mb-4'>
+      <div key={friend.id} className='relative bg-white text-indigo-600 border-zinc-200 p-3 rounded-md mb-4'>
         <div className='absolute right-1 sm:right-4 inset-y-0 flex items-center'>
-          <ChevronRight className='h-7 w-7 text-red-400' />
+          <ChevronRight className='h-7 w-7 text-indigo-600' />
         </div>
 
         <Link href={`/dashboard/chat/${chatHrefConstructor(

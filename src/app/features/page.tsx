@@ -57,12 +57,12 @@ const Page = () => {
     <section id="features" className="py-10">
       <div className="container mx-auto px-6">
         <div className="text-center">
-          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10 sm:mb-16 text-white border-b-4 inline-block py-2">
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10 text-white border-b-4 inline-block py-2">
             Everything you need for effortless conversations
           </h2>
         </div>
 
-        <div className="mt-5 sm:mt-10">
+        <div className="mt-5">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-5 text-indigo-600">
             Current Features
           </h3>

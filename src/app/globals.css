@@ -8,6 +8,25 @@
   }
 }
 
+@layer utilities {
+  .w-clamp {
+    width: clamp(15rem, 17vw, 22rem);
+  }
+
+  .disabled {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 2px solid transparent;
+    cursor: initial;
+    transition: all 0.3s ease;
+    height: 4rem;
+    width: 4rem;
+    padding: 0.8rem;
+  }
+}
+
 .scrollbar-w-2::-webkit-scrollbar {
   width: 0.25rem;
   height: 0.25rem;
@@ -72,6 +91,7 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
 
 /* .arrow-button::after {
   content: '';

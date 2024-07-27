@@ -13,7 +13,7 @@ const styles = {
     fontSize: '32px',
     lineHeight: '48px',
     fontWeight: '700',
-    margin: '0 0 16px',
+    margin: '0',
   },
   h3: {
     fontSize: '24px',
@@ -48,7 +48,6 @@ const styles = {
   a: {
     textDecoration: 'none',
     cursor: 'pointer',
-    color: '#000',
   },
   aHover: {
     textDecoration: 'underline',
@@ -88,12 +87,16 @@ const styles = {
     margin: '32px 0 0',
     padding: '16px 0',
   },
+  separator: {
+    borderBottom: '4px solid white',
+    margin: '0px 0 16px',
+  },
 };
 
 
 const page = () => {
   return (
-    <div className="w-[90%] max-w-[1024px] mx-auto my-10">
+    <div className="w-[90%] max-w-[1024px] mx-auto my-10 text-white">
       <h1 style={styles.h1}>Privacy Policy</h1>
       <p style={styles.p}>Last updated: July 25, 2024</p>
       <p style={styles.p}>
@@ -116,6 +119,7 @@ const page = () => {
         .
       </p>
       <h2 style={styles.h2}>Interpretation and Definitions</h2>
+      <div style={styles.separator}></div>
       <h3 style={styles.h3}>Interpretation</h3>
       <p style={styles.p}>
         The words of which the initial letter is capitalized have meanings
@@ -216,6 +220,7 @@ const page = () => {
         </li>
       </ul>
       <h2 style={styles.h2}>Collecting and Using Your Personal Data</h2>
+      <div style={styles.separator}></div>
       <h3 style={styles.h3}>Types of Data Collected</h3>
       <h4 style={styles.h4}>Personal Data</h4>
       <p style={styles.p}>
@@ -550,6 +555,7 @@ const page = () => {
         security.
       </p>
       <h2 style={styles.h2}>Children&apos;s Privacy</h2>
+      <div style={styles.separator}></div>
       <p style={styles.p}>
         Our Service does not address anyone under the age of 13. We do not
         knowingly collect personally identifiable information from anyone under
@@ -566,6 +572,7 @@ const page = () => {
         information.
       </p>
       <h2 style={styles.h2}>Links to Other Websites</h2>
+      <div style={styles.separator}></div>
       <p style={styles.p}>
         Our Service may contain links to other websites that are not operated by
         Us. If You click on a third party link, You will be directed to that
@@ -577,6 +584,7 @@ const page = () => {
         privacy policies or practices of any third party sites or services.
       </p>
       <h2 style={styles.h2}>Changes to this Privacy Policy</h2>
+      <div style={styles.separator}></div>
       <p style={styles.p}>
         We may update Our Privacy Policy from time to time. We will notify You
         of any changes by posting the new Privacy Policy on this page.
@@ -592,6 +600,7 @@ const page = () => {
         posted on this page.
       </p>
       <h2 style={styles.h2}>Contact Us</h2>
+      <div style={styles.separator}></div>
       <p style={styles.p}>
         If you have any questions about this Privacy Policy, You can contact us:
       </p>
