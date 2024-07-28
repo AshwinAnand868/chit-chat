@@ -30,12 +30,12 @@ const Carousel = () => {
   };
 
   return (
-    <section className="flex justify-center items-center h-[100%] md:h-[88vh]">
-      <div className="bg-[#333] h-[100vh] w-[90%] md:h-[85%] md:w-[80%] grid grid-cols-1 md:grid-cols-2 sm:items-center sm:justify-between  pt-10 sm:py-0 px-[5vw] lg:px-10 rounded-xl">
+    <section className="flex justify-center items-center h-[100vh] md:h-[70vh] mt-0 md:mt-16">
+      <div className="bg-[#333] w-[90vw] h-[100vh] md:w-[70%] md:h-[85vh] grid grid-cols-1 md:grid-cols-2 sm:items-center justify-between py-10 sm:py-0 px-[5vw] lg:px-10 rounded-xl mt-10 md:my-8">
         {/* CONTENT CONTAINER */}
-        <div className="h-[10vh] sm:h-auto">
+        <div className="h-auto">
           <div className="py-0 pr-0 pl-[2rem]">
-            <h1 className="text-white text-[16px] sm:text-[1.2rem] lg:text-[2rem] mb-2 sm:mb-5">
+            <h1 className="text-white text-[17px] sm:text-[1.2rem] lg:text-[2rem] mb-2 sm:mb-5">
               Simplified chatting experience
             </h1>
             <ul className="list-disc ml-6 space-y-1 sm:space-y-2 lg:space-y-5">
@@ -74,7 +74,7 @@ const Carousel = () => {
             <Image
               alt="first image"
               src={"/image-one.png"}
-              className="rounded-[1.56rem] border-[5px] border-[#eb575b] md:w-clamp h-[270px] w-[200px] md:h-[320px]"
+              className="rounded-[1.56rem] border-[5px] border-[#eb575b] md:w-clamp h-[250px] w-[200px] md:h-[320px]"
               width={100}
               height={100}
             />
@@ -102,7 +102,7 @@ const Carousel = () => {
 
           {/* controls */}
 
-          <div className="flex justify-between absolute left-0 top-[8rem] sm:top-[12.5rem] bottom-0 w-[7.5rem] z-[3] transform translate-y-[5rem]">
+          <div className="flex justify-between absolute left-10 top-[8rem] sm:top-[15rem] bottom-0 w-[7.5rem] z-[3] transform translate-y-[5rem]">
             <button className="py-[0.8rem] px-[0.8rem] rounded-full flex items-center justify-center border-2 border-transparent bg-transparent transition duration-300 ease-in-out h-[3.5rem] w-[3.5rem] md:h-[4rem] md:w-[4rem] hover:border-[#eb5757]">
               <Image
                 alt="button 1"
