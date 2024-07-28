@@ -30,22 +30,22 @@ const Carousel = () => {
   };
 
   return (
-    <section className="flex justify-center items-center h-[100vh] md:h-[70vh] mt-0 md:mt-16">
-      <div className="bg-[#333] w-[90vw] h-[100vh] md:w-[70%] md:h-[85vh] grid grid-cols-1 md:grid-cols-2 sm:items-center justify-between py-10 sm:py-0 px-[5vw] lg:px-10 rounded-xl mt-10 md:my-8">
+    <section className="flex justify-center items-center h-[100vh] max-h-[100vh] md:h-[70vh] mt-0 md:mt-16">
+      <div className="bg-[#333] w-[90vw] h-[100vh] max-h-[100vh] md:w-[70%] md:h-[85vh] grid grid-cols-1 md:grid-cols-2 sm:items-center justify-between py-10 sm:py-0 px-[5vw] lg:px-10 rounded-xl mt-10 md:my-8">
         {/* CONTENT CONTAINER */}
         <div className="h-auto">
           <div className="py-0 pr-0 pl-[2rem]">
-            <h1 className="text-white text-[17px] sm:text-[1.2rem] lg:text-[2rem] mb-2 sm:mb-5">
+            <h1 className="text-white text-[20px] sm:text-[1.2rem] lg:text-[2rem] mb-2 sm:mb-5">
               Simplified chatting experience
             </h1>
             <ul className="list-disc ml-6 space-y-1 sm:space-y-2 lg:space-y-5">
-              <li className="text-[#cbcbcb] text-[0.9rem] lg:text-[1.25rem] leading-[1.875rem]">
+              <li className="text-[#cbcbcb] text-[16px] lg:text-[1.25rem] leading-[1.875rem]">
                 Create your account
               </li>
-              <li className="text-[#cbcbcb] text-[0.9rem] lg:text-[1.25rem] leading-[1.875rem]">
+              <li className="text-[#cbcbcb] text-[16px] lg:text-[1.25rem] leading-[1.875rem]">
                 Add your friend or loved one
               </li>
-              <li className="text-[#cbcbcb] text-[0.9rem] lg:text-[1.25rem] leading-[1.875rem]">
+              <li className="text-[#cbcbcb] text-[16px] lg:text-[1.25rem] leading-[1.875rem]">
                 Chat with them
               </li>
             </ul>
