@@ -56,16 +56,16 @@
 .glow-effect::before {
   content: "";
   position: absolute;
-  inset: -5px;
+  inset: -10px;
   background: linear-gradient(
     45deg,
-    rgb(0, 0, 0),
-    rgb(0, 0, 0, 0.5)
+    rgb(231, 186, 8),
+    rgba(210, 207, 13)
   );
   z-index: -1;
-  filter: blur(15px);
+  filter: blur(10px);
   opacity: 1;
-  animation: glow 1.5s infinite alternate;
+  animation: glow 1s infinite alternate;
 }
 
 @keyframes glow {

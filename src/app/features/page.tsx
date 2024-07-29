@@ -3,11 +3,16 @@
 import { Transition, TransitionChild } from "@headlessui/react";
 import {
   FaComments,
+  FaEdit,
   FaLock,
   FaMoon,
+  FaPhone,
   FaPhotoVideo,
+  FaSearch,
   FaSmile,
-  FaVideo,
+  FaStar,
+  FaUserFriends,
+  FaVideo
 } from "react-icons/fa";
 
 import { useState } from "react";
@@ -39,6 +44,11 @@ const features: Feature[] = [
     description: "High-quality video calls to connect face-to-face.",
   },
   {
+    icon: FaPhone,
+    heading: "Audio Calls",
+    description: "Crystal-clear audio calls for seamless voice communication.",
+  },
+  {
     icon: FaSmile,
     heading: "Custom Emojis",
     description: "Express yourself with custom emojis.",
@@ -47,6 +57,26 @@ const features: Feature[] = [
     icon: FaMoon,
     heading: "Dark Mode",
     description: "A night-time mode to reduce eye strain.",
+  },
+  {
+    icon: FaUserFriends,
+    heading: "Group Chats",
+    description: "Create group chats to stay connected with multiple friends.",
+  },
+  {
+    icon: FaSearch,
+    heading: "Search",
+    description: "Easily find messages and media with advanced search functionality.",
+  },
+  {
+    icon: FaStar,
+    heading: "Message Reactions",
+    description: "React to messages with a variety of emojis.",
+  },
+  {
+    icon: FaEdit,
+    heading: "Message Manipulation",
+    description: "Edit or delete messages to correct mistakes or remove unwanted content.",
   },
 ];
 
