@@ -50,22 +50,6 @@ const Carousel = () => {
               </li>
             </ul>
           </div>
-          {/* <div className="py-0 pr-0 pl-[2rem]">
-            <h1 className="text-white text-[3rem] md:text-[4rem] font-normal">
-              this is a heading
-            </h1>
-          </div>
-          <div className="py-0 pr-0 pl-[2rem]">
-            <p className="text-[#cbcbcb] text-[1rem] leading-[1.875rem]">
-              this is a paragraph
-            </p>
-          </div>
-
-          <div className="py-0 pr-0 pl-[2rem]">
-            <button className="flex py-[0.9375rem] px-[1.875rem] rounded-full border-[1px] border-[#eb5757] bg-transparent text-[#eb5757] text-center text-[1rem] uppercase cursor-pointer transition-colors hover:bg-[#eb5757] hover:text-white hover:transition-colors">
-              this is a button
-            </button>
-          </div> */}
         </div>
 
         {/* IMAGES CONTAINER */}
@@ -124,46 +108,6 @@ const Carousel = () => {
         </div>
       </div>
     </section>
-
-    //     <div className="h-[85vh] flex items-center justify-center">
-    // <div className="relative w-full max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
-    //       <div className="flex items-center justify-between mb-4">
-    //         <button
-    //           onClick={handlePrevious}
-    //           disabled={currentStep === 1}
-    //           className={`flex items-center justify-center w-10 h-10 bg-white border border-gray-300 rounded-full ${
-    //             currentStep === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-200'
-    //           }`}
-    //         >
-    //           <FaArrowLeft className="text-gray-500" />
-    //         </button>
-    //         <h3 className="text-[16px] sm:text-lg font-bold">{steps[currentStep - 1].content}</h3>
-    //         <button
-    //           onClick={handleNext}
-    //           disabled={currentStep === steps.length}
-    //           className={`flex items-center justify-center w-10 h-10 bg-white border border-gray-300 rounded-full ${
-    //             currentStep === steps.length ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-200'
-    //           }`}
-    //         >
-    //           <FaArrowRight className="text-gray-500" />
-    //         </button>
-    //       </div>
-
-    //       <div className="mt-4 flex justify-center">
-    //         {steps.map((step) => (
-    //           <div
-    //             key={step.id}
-    //             className={`h-2 w-2 mx-1 rounded-full cursor-pointer ${
-    //               step.id === currentStep ? 'bg-blue-500' : 'bg-gray-300'
-    //             }`}
-    //             onClick={() => (
-    //                 setCurrentStep(step.id)
-    //             )}
-    //           ></div>
-    //         ))}
-    //       </div>
-    //     </div>
-    //     </div>
   );
 };
 
