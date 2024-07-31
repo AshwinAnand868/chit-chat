@@ -15,6 +15,7 @@ import {
   FaVideo
 } from "react-icons/fa";
 
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { IconType } from "react-icons/lib";
 import { InView } from "react-intersection-observer";
@@ -83,16 +84,37 @@ const features: Feature[] = [
 const Page = () => {
   const [lastCardInView, setLastCardInView] = useState<boolean>(false);
 
+  const textVariants = {
+    hidden: {
+      opacity: 0,
+      y: 100,
+      transition: { duration: 0.5, ease: "easeInOut" }
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeInOut" }
+    }
+  }
+
+
+  const textContainerVariant = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.3 }
+    }
+  }
+
   return (
     <section id="features" className="py-10">
-      <div className="container mx-auto px-6">
+      <motion.div className="container mx-auto px-6" variants={textContainerVariant} initial="hidden" animate="visible">
         <div className="text-center">
-          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10 text-white border-b-4 inline-block py-2">
+          <motion.h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-center mb-10 text-white border-b-4 inline-block py-2" variants={textVariants}>
             Everything you need for effortless conversations
-          </h2>
+          </motion.h2>
         </div>
 
-        <div className="mt-5">
+        <motion.div className="mt-5" variants={textVariants}>
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-5 text-indigo-600">
             Current Features
           </h3>
@@ -114,14 +136,14 @@ const Page = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="mt-10">
+        <motion.div className="mt-10" variants={textVariants}>
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-7 text-gray-500">
             Features that may come
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 sm:gap-12">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 sm:gap-12">
             {features.map((feature, index) => (
               <InView
                 key={index}
@@ -163,15 +185,15 @@ const Page = () => {
                 )}
               </InView>
             ))}
-          </div>
+          </motion.div>
           <div className="mt-20 text-center text-white text-sm">
             <p>
               Some features listed are for design purposes and may not be
               available at launch. Stay tuned for updates!
             </p>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
