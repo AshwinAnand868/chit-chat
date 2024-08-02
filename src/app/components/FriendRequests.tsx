@@ -66,7 +66,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
     <>
       {friendRequests.length === 0 ? (
         <div className="flex flex-col items-center justify-center">
-          <p className="text-lg text-zinc-500">No Requests yet 🙁</p>
+          <p className="text-lg text-indigo-600">No Requests yet 🙁</p>
         </div>
       ) : (
         friendRequests.map((request) => (
@@ -82,7 +82,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
             </button>
             <button
               aria-label="deny friend"
-              className="w-8 h-8 bg-red-600 hover:bg-red-700 grid place-items-center rounded-full transition hover:shadow-md"
+              className="w-8 h-8 bg-[#333] hover:bg-[#1d1c1c] grid place-items-center rounded-full transition hover:shadow-md"
               onClick={() => denyFriend(request.senderId)}
             >
               <X className="font-semibold text-white w-3/4 h-3/4" />
