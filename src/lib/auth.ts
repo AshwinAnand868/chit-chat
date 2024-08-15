@@ -65,6 +65,10 @@ export const authOptions: NextAuthOptions = {
                 return token;
             }
 
+            // if(account) {
+            //     token.accessToken = account.access_token;
+            // }
+
             const dbUser = JSON.parse(dbUserResult) as User
 
             // this jwt value will be stored for the user session token
@@ -72,7 +76,8 @@ export const authOptions: NextAuthOptions = {
                 id: dbUser.id,
                 name: dbUser.name,
                 email: dbUser.email,
-                picture: dbUser.image
+                picture: dbUser.image,
+                // accessToken: token.accessToken
             }
         },
         async session({session, token}) {
@@ -81,8 +86,10 @@ export const authOptions: NextAuthOptions = {
                 session.user.name = token.name,
                 session.user.email = token.email,
                 session.user.image = token.picture
+                // session.user.accessToken = token.accessToken as string
             }
 
+            // console.log(session);
             return session; // we always have to return something no matter if token is good or no
         },
         redirect() { // when the user has signed in

@@ -1,4 +1,5 @@
 import { authOptions } from "@/lib/auth";
+import StreamVideoProvider from "@/providers/StreamClientProvider";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Inter } from "next/font/google";
@@ -18,17 +19,19 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const session = await getServerSession(authOptions);
   // if (!session) notFound();
 
   return (
     <html lang="en">
       <body className={`bg-red-400 ${inter.className}`}>
-          <Providers>
-            <Navbar session={session} />
-            {children}
-          </Providers>
+        <StreamVideoProvider>
+        <Providers>
+          <Navbar session={session} />
+          {children}
+        </Providers>
+        </StreamVideoProvider>
+        
       </body>
     </html>
   );

@@ -6,6 +6,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function chatHrefConstructor(userId: string, friendId: string) {
+    console.log("user id");
+    console.log(userId);
     const sortedIds = [userId, friendId].sort()
     return `${sortedIds[0]}--${sortedIds[1]}`
 }
