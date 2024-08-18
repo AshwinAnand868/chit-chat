@@ -1,7 +1,7 @@
 'use client';
 
 import { tokenProvider } from "@/actions/stream.actions";
-import Loader from "@/app/components/Loader";
+// import Loader from "@/app/components/Loader";
 import { StreamVideo, StreamVideoClient } from "@stream-io/video-react-sdk";
 import { getSession } from "next-auth/react";
 import { NextResponse } from "next/server";
@@ -41,9 +41,9 @@ const StreamVideoProvider = ({ children }: { children: ReactNode }) => {
     initializeVideoClient();
   }, []);
 
-  if (loading || !videoClient) return <Loader />;
+  // if (loading || !videoClient) return <>'Loading....'</>;
 
-  return <StreamVideo client={videoClient}>{children}</StreamVideo>;
+  return <StreamVideo client={videoClient!}>{children}</StreamVideo>;
 };
 
 export default StreamVideoProvider;
