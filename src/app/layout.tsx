@@ -26,12 +26,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`bg-red-400 ${inter.className}`}>
         <StreamVideoProvider>
-        <Providers>
-          <Navbar session={session} />
-          {children}
-        </Providers>
+          <Providers>
+            <Navbar session={session} />
+            {children}
+          </Providers>
         </StreamVideoProvider>
-        
       </body>
     </html>
   );

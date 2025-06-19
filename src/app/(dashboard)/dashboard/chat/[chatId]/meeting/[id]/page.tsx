@@ -7,15 +7,21 @@ import { useGetCallById } from "@/hooks/useGetCallById";
 import { StreamCall, StreamTheme, useCalls } from "@stream-io/video-react-sdk";
 import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Page = () => {
   const { chatId, id } = useParams();
-  const [isSetUpComplete, setIsSetUpComplete] = useState<boolean>(false);
+  const searchParams = useSearchParams();
+  const setUpComplete = searchParams.get('setUpComplete');
+
+  console.log("Set up complete: " + setUpComplete);
+
+  const [isSetUpComplete, setIsSetUpComplete] = useState<boolean>(setUpComplete === 'true');
   const { call, isCallLoading } = useGetCallById(id);
   const [session, setSession] = useState<Session>();
   const calls = useCalls();
+  
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -50,7 +56,7 @@ const Page = () => {
                       calleeId={chatPartnerId}
                     />
                 ): (
-                  <MeetingRoom />  
+                  <MeetingRoom call={call} />  
                 )}
             </StreamTheme>
         </StreamCall>

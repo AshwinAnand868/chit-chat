@@ -32,6 +32,14 @@ export default async function Page({ params }: PageProps) {
   const chatPartnerJSON = (await fetchRedis('get', `user:${chatPartnerId}`)) as string;
   const chatPartner = JSON.parse(chatPartnerJSON) as User;
 
+  
+  console.log("Chat partner id..........")
+  console.log(chatPartner.id);
+
+  
+  console.log("Session id..........")
+  console.log(user.id);
+
   const messagesForGivenChatId: string[] = await fetchRedis('zrange', `chat:${chatId}:messages`, 0, -1);
   const reversedChatMessages = messagesForGivenChatId.map((message) => JSON.parse(message) as Message).reverse();
   const chatMessages = messageArrayValidator.parse(reversedChatMessages);

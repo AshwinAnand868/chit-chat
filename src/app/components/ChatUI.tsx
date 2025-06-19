@@ -1,12 +1,16 @@
-'use client';
+"use client";
 
-import ChatInput from '@/app/components/ChatInput';
-import Messages from '@/app/components/Messages';
-import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk';
-import { Session } from 'next-auth';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { FC, useState } from 'react';
+import ChatInput from "@/app/components/ChatInput";
+import Messages from "@/app/components/Messages";
+import { pusherClient } from "@/lib/pusher";
+import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
+import { Session } from "next-auth";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { FaVideo } from "react-icons/fa";
+import IncomingCallToast from "./IncomingCallToast";
 
 interface ChatUIProps {
   chatId: string;
@@ -15,44 +19,98 @@ interface ChatUIProps {
   initialMessages: Message[];
 }
 
-const ChatUI: FC<ChatUIProps> = ({ chatId, chatPartner, session, initialMessages }) => {
+const ChatUI: FC<ChatUIProps> = ({
+  chatId,
+  chatPartner,
+  session,
+  initialMessages,
+}) => {
   const client = useStreamVideoClient();
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [callDetails, setCallDetails] = useState<Call | null>(null);
   const [values, setValues] = useState({
     dateTime: new Date(),
-    description: '',
-    link: '',
+    description: "",
+    link: "",
   });
   const router = useRouter();
+  const [userId1, userId2] = chatId.split("--");
+  const chatPartnerId = session.user.id === userId1 ? userId2 : userId1;
+
+  useEffect(() => {
+    const calleeId = chatPartnerId; // Assuming the current user's ID is the calleeId
+
+    const channel = pusherClient.subscribe(`user-${calleeId}`);
+
+    const incomingCallHandler = (data: {
+      callId: string;
+      callerId: string;
+    }) => {
+      toast.custom((t) => <IncomingCallToast t={t} chatId={chatId} callId={data.callId} calleeId={calleeId} />);
+    };
+
+    channel.bind("incoming-call-event", incomingCallHandler);
+
+    return () => {
+      pusherClient.unsubscribe(`user-${calleeId}`);
+    };
+  }, [chatPartnerId]);
 
   const createCall = async () => {
     if (!client) return;
 
     try {
       const callId = crypto.randomUUID();
-      const call = client.call('default', callId);
+      const call = client.call("default", callId);
 
-      if (!call) throw new Error('Failed to create a call');
+      if (!call) throw new Error("Failed to create a call");
 
-      const startsAt = values.dateTime.toISOString() || new Date(Date.now()).toISOString();
-      const description = values.description || 'Instant Call';
+      const startsAt =
+        values.dateTime.toISOString() || new Date(Date.now()).toISOString();
+      const description = values.description || "Instant Call";
+
+      console.log("user id 1");
+      console.log(userId1);
+
+      console.log("user id 2");
+      console.log(userId2);
+
+      const response = await fetch("/api/create-stream-users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId1, userId2 }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create stream users");
+      }
 
       await call.getOrCreate({
+        ring: true,
+        // notify: true,
         data: {
           starts_at: startsAt,
           custom: {
             description,
           },
+          members: [
+            {
+              user_id: userId1,
+            },
+            {
+              user_id: userId2,
+            },
+          ],
         },
       });
 
       setCallDetails(call);
 
-      if(!values.description) {
-        router.push(`meeting/${call.id}`)
+      if (!values.description) {
+        router.push(`/dashboard/chat/${chatId}/meeting/${call.id}?setUpComplete=false`);
       }
-
     } catch (error) {
       console.error(error);
     }
@@ -81,7 +139,7 @@ const ChatUI: FC<ChatUIProps> = ({ chatId, chatPartner, session, initialMessages
           </div>
         </div>
         <div className="mr-6 mt-4 cursor-pointer" onClick={createCall}>
-          ABC
+          <FaVideo className="w-7 h-7 text-indigo-600 hover:text-indigo-500" />
         </div>
       </div>
 

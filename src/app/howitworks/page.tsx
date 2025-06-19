@@ -99,7 +99,7 @@ const Carousel = () => {
 
         {/* IMAGES CONTAINER */}
         <div className="flex flex-row-reverse items-center justify-start relative h-[7rem] md:h-[15rem] w-auto" >
-          <motion.div className="z-[2] w-clamp absolute" 
+          <motion.div className="z-[2] absolute" 
             animate={{
               opacity: 
                 currentStep === 0 ? 1 : currentStep === 1 ? 0 : 0,
