@@ -44,12 +44,14 @@ const MeetingRoom = ({call}: MeetingRoomProps) => {
   const callingState = useCallCallingState();
   // const call = useCall();
 
-  if (!call) return null;
   // // show ringing call panel components only before the call is joined
   // if (![CallingState.RINGING, CallingState.JOINING].includes(callingState))
   //   return null;
 
   useEffect(() => {
+
+    if (!call) return;
+
     const joinCall = async () => {
       if(call && !call.isCreatedByMe) {
         try {
@@ -134,7 +136,7 @@ const MeetingRoom = ({call}: MeetingRoomProps) => {
           <ToggleVideoPublishingButton />
           <CancelCallButton
             onClick={async () => {
-              await call.leave();
+              await call!.leave();
               router.replace(
                 `/dashboard/chat/${chatHrefConstructor(
                   members[0].user.id,

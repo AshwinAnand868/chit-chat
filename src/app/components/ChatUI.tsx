@@ -54,7 +54,7 @@ const ChatUI: FC<ChatUIProps> = ({
     return () => {
       pusherClient.unsubscribe(`user-${calleeId}`);
     };
-  }, [chatPartnerId]);
+  }, [chatId, chatPartnerId]);
 
   const createCall = async () => {
     if (!client) return;
